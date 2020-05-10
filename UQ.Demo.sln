@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UQ.Demo", "UQ.Demo.csproj", "{7E968633-BFDF-4CD0-9FE7-005A73C4D247}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UQ.IntegrationTests", "Tests\UQ.IntegrationTests\UQ.IntegrationTests.csproj", "{92598E7F-650C-4FB0-ACF9-0847A8F8D9A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E968633-BFDF-4CD0-9FE7-005A73C4D247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E968633-BFDF-4CD0-9FE7-005A73C4D247}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E968633-BFDF-4CD0-9FE7-005A73C4D247}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E968633-BFDF-4CD0-9FE7-005A73C4D247}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92598E7F-650C-4FB0-ACF9-0847A8F8D9A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92598E7F-650C-4FB0-ACF9-0847A8F8D9A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92598E7F-650C-4FB0-ACF9-0847A8F8D9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92598E7F-650C-4FB0-ACF9-0847A8F8D9A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {539A48D1-638F-4B80-9DC3-6D459BC7B789}
+	EndGlobalSection
+EndGlobal
