@@ -21,24 +21,42 @@ namespace UQ.Demo.Services
             string databaseName = configSection.GetSection("DatabaseName").Value;
             string containerName = configSection.GetSection("ContainerName").Value;
             string partitionKey = configSection.GetSection("PartitionKey").Value;
+            bool rebuildContainer = (bool)configSection.GetValue(typeof(Boolean), "RebuildContainer", false);
 
             var clientBuilder = new CosmosClientBuilder(connectionString);
             CosmosClient client = clientBuilder.WithConnectionModeDirect().Build();
 
-            // Craete database
+            // Create database
             DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
 
-            // Create containers
-            await database.Database.CreateContainerIfNotExistsAsync(containerName, partitionKey);
+            // Recreate container
+            if (rebuildContainer)
+            {
+                try
+                {
+                    var cn = client.GetContainer(databaseName, containerName);
+                    await cn.DeleteContainerAsync();
+                }
+                catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    // NOP
+                }
+            }
 
-            return new VehicleImageService(client, databaseName, containerName);
+            await database.Database.DefineContainer(name: containerName, partitionKeyPath: partitionKey)
+                .WithUniqueKey()
+                    .Path("/ImageId")
+                    .Path("/VehicleId")
+                .Attach()
+                .CreateIfNotExistsAsync();
+
+            var container = client.GetContainer(databaseName, containerName);
+
+            return new VehicleImageService(container);
         }
 
-        public VehicleImageService(
-            CosmosClient dbClient, 
-            string databaseName, 
-            string containerName) 
-            : base(dbClient, databaseName, containerName)
+        public VehicleImageService(Container container) 
+            : base(container)
         {
             Query = $"SELECT TOP {MaxItemCount} * from c";
         }

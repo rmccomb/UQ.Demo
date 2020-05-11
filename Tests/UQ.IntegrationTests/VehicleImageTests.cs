@@ -40,11 +40,46 @@ namespace UQ.IntegrationTests
                 Speed = 59.5m,
                 Time = 0.1,
                 VehicleType = "Car",
-                X = 532.0123m,
-                Y = 548.1238m
+                X = 532.0123,
+                Y = 548.1238
             };
 
             await _vehicleImageService.AddEntityAsync(image);
+        }
+
+        [Fact]
+        public async Task BulkAddVehicleImages()
+        {
+            var max = 100;
+            var imageId = 1;
+            while (imageId < max)
+            {
+                var image = GetRandomImage(imageId);
+                await _vehicleImageService.AddEntityAsync(image);
+                imageId++;
+            }
+        }
+
+        private VehicleImage GetRandomImage(int imageId)
+        {
+            var r = new Random(DateTime.Now.Millisecond);
+
+            return new VehicleImage
+            {
+                // PK
+                ImageId = 35000 + imageId,
+                VehicleId = 13403,
+
+                Acceleration = new decimal(r.NextDouble() * 10),
+                id = Guid.NewGuid().ToString(),
+                Latitude = -27.5599m,
+                Longitude = 153.0813m,
+                Speed = new decimal(r.NextDouble() * 10),
+                Time = imageId / 10.0,
+                VehicleType = "Car",
+                X = Math.Round(r.NextDouble() * 500, 4),
+                Y = Math.Round(r.NextDouble() * 500, 4)
+            };
         }
     }
 }

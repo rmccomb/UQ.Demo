@@ -21,9 +21,9 @@ namespace UQ.Demo.Models
         public decimal Acceleration { get; set; }
         
         [DisplayName("X Coordinate (image)")]
-        public decimal X { get; set; }
+        public double X { get; set; }
 
         [DisplayName("Y Coordinate (image)")]
-        public decimal Y { get; set; }
+        public double Y { get; set; }
     }
 }

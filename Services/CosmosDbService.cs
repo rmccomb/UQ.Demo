@@ -14,9 +14,9 @@ namespace UQ.Demo.Services
         public string Query { get; set; }
         protected int MaxItemCount = 64;
 
-        public CosmosDbService(CosmosClient dbClient, string databaseName, string containerName)
+        public CosmosDbService(Container container)
         {
-            this._container = dbClient.GetContainer(databaseName, containerName);
+            this._container = container;
         }
 
         public async Task AddEntityAsync(T item)
