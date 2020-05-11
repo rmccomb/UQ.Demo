@@ -4,14 +4,14 @@ using System.ComponentModel;
 
 namespace UQ.Demo.Models
 {
-    public class VehicleImage
+    public class VehicleImage : Entity
     {
         [DisplayName("Image ID")]
-        public int id { get; set; }
+        public int ImageId { get; set; }
         
         [DisplayName("Vehicle ID")]
         public int VehicleId { get; set; }
-        public float Time { get; set; }
+        public double Time { get; set; }
         
         [DisplayName("Vehicle Type")]
         public string VehicleType { get; set; }
