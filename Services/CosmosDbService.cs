@@ -46,24 +46,24 @@ namespace UQ.Demo.Services
 
         }
 
-        //public async Task<IEnumerable<T>> GetEntitiesAsync(string query)
-        //{
-        //    string queryString = Query; // Query provided in derived class
-        //    if (accountId != null)
-        //    {
-        //        queryString += $" AND c.AccountId = \"{accountId}\""; // Partition key
-        //    }
+        public async Task<IEnumerable<T>> GetEntitiesAsync(string whereClause)
+        {
+            string queryString = Query; // Query provided in derived class
+            if (whereClause != null)
+            {
+                queryString += $" AND ({whereClause})"; 
+            }
 
-        //    var query = this._container.GetItemQueryIterator<T>(new QueryDefinition(queryString));
-        //    List<T> results = new List<T>();
-        //    while (query.HasMoreResults)
-        //    {
-        //        var response = await query.ReadNextAsync();
+            var iterator = this._container.GetItemQueryIterator<T>(new QueryDefinition(queryString));
+            List<T> results = new List<T>();
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
 
-        //        results.AddRange(response.ToList());
-        //    }
+                results.AddRange(response.ToList());
+            }
 
-        //    return results;
-        //}
+            return results;
+        }
     }
 }

@@ -9,5 +9,7 @@ namespace UQ.Demo.Services
     public interface ICosmosDbService<T> where T : IEntity
     {
         Task AddEntityAsync(T item);
+
+        Task<IEnumerable<T>> GetEntitiesAsync(string whereClause);
     }
 }

@@ -17,11 +17,11 @@ namespace UQ.Demo.Services
     {
         public static async Task<IVehicleImageService> InitializeCosmosClientInstanceAsync(IConfigurationSection configSection)
         {
-            string connectionString = configSection.GetSection("PrimaryConnectionString").Value;
-            string databaseName = configSection.GetSection("DatabaseName").Value;
-            string containerName = configSection.GetSection("ContainerName").Value;
-            string partitionKey = configSection.GetSection("PartitionKey").Value;
-            bool rebuildContainer = (bool)configSection.GetValue(typeof(Boolean), "RebuildContainer", false);
+            var connectionString = configSection.GetSection("PrimaryConnectionString").Value;
+            var databaseName = configSection.GetSection("DatabaseName").Value;
+            var containerName = configSection.GetSection("ContainerName").Value;
+            var partitionKey = configSection.GetSection("PartitionKey").Value;
+            var rebuildContainer = (bool)configSection.GetValue(typeof(Boolean), "RebuildContainer", false);
 
             var clientBuilder = new CosmosClientBuilder(connectionString);
             CosmosClient client = clientBuilder.WithConnectionModeDirect().Build();

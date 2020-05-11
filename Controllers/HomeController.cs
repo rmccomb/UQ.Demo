@@ -4,26 +4,30 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using UQ.Demo.Models;
+using UQ.Demo.Services;
 
 namespace UQ.Demo.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IVehicleImageService _vehicleImageService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IVehicleImageService vehicleImageService)
         {
-            _logger = logger;
+            _vehicleImageService = vehicleImageService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var images = await _vehicleImageService.GetEntitiesAsync(null);
+            return View(images);
         }
 
-        public IActionResult Privacy()
+        /// <summary>
+        /// Display the API help
+        /// </summary>
+        public ActionResult ApiHelp()
         {
             return View();
         }

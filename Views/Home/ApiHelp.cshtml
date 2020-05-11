@@ -1,0 +1,46 @@
+﻿<main role="main">
+    <div class="row">
+        <main class="col-12">
+            <div>
+                <h4 class="api-title">Vehicle Image API</h4>
+            </div>
+            <p></p>
+            <p class="leader">Available HTTP methods</p>
+
+            <div class="bg-white box-shadow rounded">
+                <div class="bd-callout bd-callout-info">
+                    <h5>Get all vehicle images</h5>
+                    <p></p>
+                    <p class="h6">HTTP endpoint GET: http://../api/Images</p>
+                    <p>Content-Type: application/json</p>
+                    <p>Returns an Array of Vehicle Image (see below)</p>
+                </div>
+
+                <div class="bd-callout bd-callout-light">
+                    <figure>
+                        <figcaption>Vehicle Image Array - a JSON array, for example,</figcaption>
+                        <code contenteditable spellcheck="false"></code>
+                        <pre><code class="lang" data-lang="javascript" contenteditable spellcheck="false">
+    [{
+        "ImageId": 35045,
+        "VehicleId": 13403,
+        "Time": 4.5,
+        "VehicleType": "Car",
+        "Latitude": -27.5599,
+        "Longitude": 153.0813,
+        "Speed": 7.56057223191512,
+        "Acceleration": 1.75633759785273,
+        "X": 206.4373,
+        "Y": 458.7188
+    },
+    {
+        /* etc */
+    },
+    ]
+</code></pre>
+                    </figure>
+                </div>
+            </div>
+        </main>
+    </div>
+</main>
