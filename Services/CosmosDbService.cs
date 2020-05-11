@@ -51,7 +51,7 @@ namespace UQ.Demo.Services
             string queryString = Query; // Query provided in derived class
             if (whereClause != null)
             {
-                queryString += $" AND ({whereClause})"; 
+                queryString += $"WHERE ({whereClause})"; 
             }
 
             var iterator = this._container.GetItemQueryIterator<T>(new QueryDefinition(queryString));

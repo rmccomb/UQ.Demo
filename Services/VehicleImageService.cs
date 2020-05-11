@@ -43,6 +43,7 @@ namespace UQ.Demo.Services
                 }
             }
 
+            // Define the unique key as ImageId + VehicleId
             await database.Database.DefineContainer(name: containerName, partitionKeyPath: partitionKey)
                 .WithUniqueKey()
                     .Path("/ImageId")
@@ -58,7 +59,7 @@ namespace UQ.Demo.Services
         public VehicleImageService(Container container) 
             : base(container)
         {
-            Query = $"SELECT TOP {MaxItemCount} * from c";
+            Query = $"SELECT TOP {MaxItemCount} * from c ";
         }
 
         public IQueryable<VehicleImage> GetJobIterator() => _container

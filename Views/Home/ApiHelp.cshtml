@@ -8,17 +8,34 @@
             <p class="leader">Available HTTP methods</p>
 
             <div class="bg-white box-shadow rounded">
+
                 <div class="bd-callout bd-callout-info">
                     <h5>Get all vehicle images</h5>
                     <p></p>
-                    <p class="h6">HTTP endpoint GET: http://../api/Images</p>
+                    <p class="h6">HTTP endpoint GET: http://../api/Index</p>
                     <p>Content-Type: application/json</p>
                     <p>Returns an Array of Vehicle Image (see below)</p>
                 </div>
 
+                <div class="bd-callout bd-callout-info">
+                    <h5>Bulk insert vehicle images</h5>
+                    <p></p>
+                    <p class="h6">HTTP endpoint POST: http://../api/Images</p>
+                    <p>Content-Type: application/json</p>
+                    <p>Request Body: a JSON array of Vehicle Image (see below)</p>
+                    <p>Returns a count of records parsed and records inserted.  Pre-existing records will be ignored.</p>
+                    <div>The HTTP response returns a JSON structure showing the number of records affected e.g.</div>
+                    <code class="lang" data-lang="javascript">
+                        {
+                        "recordsParsed":100,
+                        "recordsAdded":23
+                        }
+                    </code>
+                </div>
+
                 <div class="bd-callout bd-callout-light">
                     <figure>
-                        <figcaption>Vehicle Image Array - a JSON array, for example,</figcaption>
+                        <figcaption><b>Vehicle Image Array</b> - a JSON array, for example,</figcaption>
                         <code contenteditable spellcheck="false"></code>
                         <pre><code class="lang" data-lang="javascript" contenteditable spellcheck="false">
     [{

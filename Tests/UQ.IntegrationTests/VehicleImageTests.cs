@@ -19,13 +19,6 @@ namespace UQ.IntegrationTests
                 .GetRequiredService<IVehicleImageService>();
         }
 
-
-        [Fact]
-        public void Test1()
-        {
-            Assert.True(true);
-        }
-
         [Fact]
         public async Task AddVehicleImage()
         {
@@ -66,7 +59,7 @@ namespace UQ.IntegrationTests
 
             return new VehicleImage
             {
-                // PK
+                // Unique key constraint on ImageId + VehicleId
                 ImageId = 35000 + imageId,
                 VehicleId = 13403,
 

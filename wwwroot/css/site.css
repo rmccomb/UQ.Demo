@@ -126,3 +126,7 @@ body {
 pre code {
     color: #e83e8c;
 }
+
+table.table > thead {
+    background-color: lightblue;
+}
