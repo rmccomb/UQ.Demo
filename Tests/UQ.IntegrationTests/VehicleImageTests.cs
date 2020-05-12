@@ -44,13 +44,13 @@ namespace UQ.IntegrationTests
         public async Task BulkAddVehicleImages()
         {
             var maxImage = 20;
-            var maxVehicle = 20;
+            var maxVehicle = 100;
             var vehicleId = 1;
 
-            while (vehicleId < maxVehicle)
+            while (vehicleId <= maxVehicle)
             {
                 var imageId = 1;
-                while (imageId < maxImage)
+                while (imageId <= maxImage)
                 {
                     var image = GetRandomImage(imageId, vehicleId);
                     await _vehicleImageService.AddEntityAsync(image);
