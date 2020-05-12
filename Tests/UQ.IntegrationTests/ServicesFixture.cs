@@ -18,7 +18,7 @@ namespace UQ.IntegrationTests
         {
             Configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
-                .AddJsonFile("appsettings.Azure.json")
+                .AddJsonFile("appsettings.Testing.json")
                 .Build();
 
             this.Services = new ServiceCollection();
