@@ -11,6 +11,7 @@ namespace UQ.Demo.Services
 {
     public interface IVehicleImageService : ICosmosDbService<VehicleImage>
     {
+        Task<IEnumerable<VehicleImage>> FindByVehicleId(int? vehicleId);
     }
 
     public class VehicleImageService : CosmosDbService<VehicleImage>, IVehicleImageService
@@ -65,6 +66,9 @@ namespace UQ.Demo.Services
         public IQueryable<VehicleImage> GetJobIterator() => _container
             .GetItemLinqQueryable<VehicleImage>(requestOptions: new QueryRequestOptions { MaxItemCount = this.MaxItemCount });
 
-
+        public async Task<IEnumerable<VehicleImage>> FindByVehicleId(int? vehicleId)
+        {
+            return await GetEntitiesAsync($"c.VehicleId = {vehicleId}");
+        }
     }
 }

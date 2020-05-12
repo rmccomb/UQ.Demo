@@ -2,76 +2,48 @@
 
 <h1 class="sub-title mb-4">Index of Vehicle Images</h1>
 
-<table class="table table-sm">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VehicleId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Time)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VehicleType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Latitude)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Longitude)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Speed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Acceleration)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.X)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Y)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Time)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Latitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Longitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Speed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Acceleration)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.X)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Y)
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+@* Search parameters *@
+<div class="container">
+    <div class="row mt-3 mb-4 p-0 col-md-6 col-sm-12">
+        <div class="input-group">
+            <input id="vehicleId" type="text" class="form-control" placeholder="Vehicle ID">
+            <div class="input-group-append">
+                <button id="search" class="btn btn-outline-secondary" type="button">Search</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3 mb-4 p-0 col-md-8 col-sm-12">
+
+    </div>
+</div>
+
+@* Search Results *@
+<div id="searchResult" class="form-group">
+    <partial name="_VehicleImagesList" />
+</div>
+
+@section Scripts {
+    <script language="javascript">
+    $(function () {
+
+        // Search function
+        $('#search').on('click', function () {
+            $.ajaxSetup({ traditional: true, type: "POST" });
+            var vehicleId = $('#vehicleId').val();
+            // TODO params
+            $('#searchResult').load('@Url.Action("Search", "Home")', { vehicleId: vehicleId }
+                , function (response, status, xreq) {
+                    console.log(xreq.status);
+                    if (status == "error") {
+                        $("#searchResult").html(response);
+                    }
+                });
+        });
+
+
+
+    });
+
+    </script>
+}

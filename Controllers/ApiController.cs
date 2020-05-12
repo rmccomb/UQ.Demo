@@ -20,11 +20,28 @@ namespace UQ.Demo.Controllers
         }
 
         [HttpGet]
+        [ActionName("Index")]
         public async Task<IActionResult> IndexAsync()
         {
             try
             {
                 var images = await _vehicleImageService.GetEntitiesAsync(null);
+                return Json(images);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpGet]
+        [ActionName("Search")]
+        public async Task<IActionResult> SearchAsync(int id)
+        {
+            try
+            {
+                var images = await _vehicleImageService.FindByVehicleId(id);
                 return Json(images);
             }
             catch (Exception ex)

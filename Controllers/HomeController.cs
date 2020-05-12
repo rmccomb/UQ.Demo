@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UQ.Demo.Models;
 using UQ.Demo.Services;
@@ -22,6 +23,17 @@ namespace UQ.Demo.Controllers
         {
             var images = await _vehicleImageService.GetEntitiesAsync(null);
             return View(images);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Search(int? vehicleId)
+        {
+            if (vehicleId.HasValue)
+            {
+                var items = await _vehicleImageService.FindByVehicleId(vehicleId);
+                return PartialView("_VehicleImagesList", items);
+            }
+            return StatusCode(StatusCodes.Status204NoContent, "");
         }
 
         /// <summary>

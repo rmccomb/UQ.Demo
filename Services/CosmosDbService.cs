@@ -43,7 +43,6 @@ namespace UQ.Demo.Services
         {
             foreach (var item in items)
                 await UpdateEntityAsync(item);
-
         }
 
         public async Task<IEnumerable<T>> GetEntitiesAsync(string whereClause)

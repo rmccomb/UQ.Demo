@@ -43,17 +43,24 @@ namespace UQ.IntegrationTests
         [Fact]
         public async Task BulkAddVehicleImages()
         {
-            var max = 100;
-            var imageId = 1;
-            while (imageId < max)
+            var maxImage = 20;
+            var maxVehicle = 20;
+            var vehicleId = 1;
+
+            while (vehicleId < maxVehicle)
             {
-                var image = GetRandomImage(imageId);
-                await _vehicleImageService.AddEntityAsync(image);
-                imageId++;
+                var imageId = 1;
+                while (imageId < maxImage)
+                {
+                    var image = GetRandomImage(imageId, vehicleId);
+                    await _vehicleImageService.AddEntityAsync(image);
+                    imageId++;
+                }
+                vehicleId++;
             }
         }
 
-        private VehicleImage GetRandomImage(int imageId)
+        private VehicleImage GetRandomImage(int imageId, int vehicleId)
         {
             var r = new Random(DateTime.Now.Millisecond);
 
@@ -61,12 +68,12 @@ namespace UQ.IntegrationTests
             {
                 // Unique key constraint on ImageId + VehicleId
                 ImageId = 35000 + imageId,
-                VehicleId = 13403,
+                VehicleId = vehicleId,
 
                 Acceleration = new decimal(r.NextDouble() * 10),
                 id = Guid.NewGuid().ToString(),
-                Latitude = -27.5599m,
-                Longitude = 153.0813m,
+                Latitude = -27m + new decimal(r.NextDouble()),
+                Longitude = 153m + new decimal(r.NextDouble()),
                 Speed = new decimal(r.NextDouble() * 10),
                 Time = imageId / 10.0,
                 VehicleType = "Car",
