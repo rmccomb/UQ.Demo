@@ -1,5 +1,5 @@
 # UQ.Demo
-A web application for the School of Engineering, University of Queensland.
+A web application for the School of Civil Engineering, University of Queensland.
 
 The web application consist of a home page which list the Vehicle Image records, and provides a search by Vehicle ID function.
 An API is provided and documented on the API Help page.
